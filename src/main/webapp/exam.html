@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<style>
+    body{
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        box-sizing: border-box;
+        margin:0;
+        background: #27ae60;
+        color:#1d1d1d;
+    }
+
+    .container{
+        width:60%;
+        margin:100px auto;
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .question-container{
+        width:100%;
+        background:white;
+        padding: 10px 20px;
+        border-radius:5px;
+        box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1), 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    .question{
+        font-size: 30px;
+        padding: 10px 0;
+        font-weight: 500;
+        margin: 10px 0px;
+    }
+
+    .divider{
+        margin: 5px auto;
+        border:1px solid #cecece;
+    }
+    .single-answer{
+        border:1px solid #efefef;
+        margin: 10px 0;
+        padding: 15px 5px;
+        border-radius:3px;
+        display: flex;
+        align-items: center;
+        transition: all 100ms 20ms ease;
+    }
+
+    .single-answer:hover{
+        background: #27ae6032;
+        cursor:pointer;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="exam-name">
+
+        </div>
+        <div class="question-container">
+            <div class="question">¿Cuál es la formula química de la Sal?</div>
+            <hr class="divider">
+            <form class="answers">
+                <div class="single-answer">
+                    <input type="radio" name="answer" id="" value="1">
+                </div>
+                <div class="single-answer">
+                    <input type="radio" name="answer" id="" value="2">
+                </div>
+                <div class="single-answer">
+                    <input type="radio" name="answer" id="" value="3">
+                </div>
+                <div class="single-answer">
+                    <input type="radio" name="answer" id="" value="4">
+                </div>
+            </form>
+        </div>
+        <div class="buttons">
+
+        </div>
+    </div>
+</body>
+
+</html>
