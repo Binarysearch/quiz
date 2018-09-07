@@ -1,0 +1,3 @@
+Ejemplo de registro de un usuario
+POST
+https://binarysearch.es/quiz/register?email=antonio.ruiz@desenlace.net&password=12345
