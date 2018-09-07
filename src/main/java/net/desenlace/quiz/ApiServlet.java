@@ -18,6 +18,8 @@ public abstract class ApiServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try{
             Connection db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
+            response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setCharacterEncoding("UTF-8");
             response.getWriter().append(postResponse(new Request(request), db));
         } catch (SQLException e){
             response.getWriter().append(e.getMessage());
