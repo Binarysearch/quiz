@@ -19,10 +19,10 @@ public abstract class ApiServlet extends HttpServlet {
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection db = null;
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setCharacterEncoding("UTF-8");
 		try{
             db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
-            response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setCharacterEncoding("UTF-8");
             response.getWriter().append(postResponse(new Request(request), db));
         } catch (SQLException e){
             response.setStatus(500);
@@ -39,10 +39,10 @@ public abstract class ApiServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection db = null;
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setCharacterEncoding("UTF-8");
 		try{
 			db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
-			response.setHeader("Access-Control-Allow-Origin", "*");
-			response.setCharacterEncoding("UTF-8");
 			response.getWriter().append(getResponse(new Request(request), db));
 		} catch (SQLException e){
 			response.setStatus(500);
