@@ -1,3 +1,24 @@
 Ejemplo de registro de un usuario
 POST
 https://binarysearch.es/quiz/register?email=antonio.ruiz@desenlace.net&password=12345
+
+RESPUESTA: 
+{
+    "id":4
+}
+
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+Ejemplo de login
+POST
+https://binarysearch.es/quiz/login?email=antonio.ruiz@desenlace.net&password=123456
+
+RESPUESTA: 
+{
+    "usuario":1,
+    "token":"rwjYicdy9Ger5YGqOnqeijqUyNda3dbuaLTJx8I7OwyTWFJu3A",
+    "email":"antonio.ruiz@desenlace.net"
+}
+
+------------------------------------------------------------------------------------------------
