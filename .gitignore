@@ -1,5 +1,6 @@
 target/
 src/main/java/net/desenlace/quiz/DbData.java
+src/main/webapp/react-app/node-modules
 .project
 .vscode/
 .settings/
