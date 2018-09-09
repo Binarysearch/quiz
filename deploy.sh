@@ -1,0 +1,1 @@
+mvn package && cp ./target/quiz.war /var/lib/tomcat8/webapps/binarysearch.es/

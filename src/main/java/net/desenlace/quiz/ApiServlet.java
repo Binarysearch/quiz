@@ -2,13 +2,15 @@ package net.desenlace.quiz;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import javax.servlet.http.Cookie;
 
 import javax.json.Json;
 
@@ -22,7 +24,8 @@ public abstract class ApiServlet extends HttpServlet {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setCharacterEncoding("UTF-8");
 		try{
-            db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
+			db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
+			iniciarSesion(request, db);
             response.getWriter().append(postResponse(new Request(request), db));
         } catch (SQLException e){
             response.setStatus(500);
@@ -43,6 +46,7 @@ public abstract class ApiServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		try{
 			db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
+			iniciarSesion(request, db);
 			response.getWriter().append(getResponse(new Request(request), db));
 		} catch (SQLException e){
 			response.setStatus(500);
@@ -57,6 +61,25 @@ public abstract class ApiServlet extends HttpServlet {
 		}
 	}
 
-    protected String postResponse(Request request, Connection connection) throws SQLException{throw new ApiException(405, "Metodo no permitido");}
+    private boolean iniciarSesion(HttpServletRequest request, Connection db) throws SQLException {
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null){
+			for(Cookie c : cookies){
+				if(c.getName().equals("token")){
+					PreparedStatement st = db.prepareStatement("select quiz.iniciar_sesion(?);");
+					st.setString(1, c.getValue());
+					ResultSet r = st.executeQuery();
+					if(r.next()){
+						return r.getBoolean("iniciar_sesion");
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	protected String postResponse(Request request, Connection connection) throws SQLException {
+		throw new ApiException(405, "Metodo no permitido");
+	}
     protected String getResponse(Request request, Connection connection) throws SQLException{throw new ApiException(405, "Metodo no permitido");}
 }

@@ -22,3 +22,22 @@ RESPUESTA:
 }
 
 ------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+Ejemplo de creacion de una pregunta
+POST
+https://binarysearch.es/quiz/crear_pregunta?pregunta=p&respuesta1=r1&respuesta2=r2&respuesta3=r3&respuesta4=r4&correcta=2
+
+RESPUESTA: 
+{
+    "id": 3,
+    "pregunta": "p",
+    "respuesta1": "r1",
+    "respuesta2": "r2",
+    "respuesta3": "r3",
+    "respuesta4": "r4",
+    "correcta": 2
+}
+
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+------------------------------------------------------------------------------------------------

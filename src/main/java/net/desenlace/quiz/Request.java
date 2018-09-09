@@ -18,4 +18,13 @@ public class Request {
         return result;
     }
 
+	public int getInt(String paramName) {
+        String paramValue = getString(paramName);
+        try{
+            return Integer.parseInt(paramValue);
+        } catch(NumberFormatException e){
+            throw new ApiException(400, "El formato del parametro '"+paramValue+"' no es valido, debe ser un numero entero.");
+        }
+	}
+
 }
