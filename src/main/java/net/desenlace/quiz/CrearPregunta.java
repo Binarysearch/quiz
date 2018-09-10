@@ -15,6 +15,10 @@ public class CrearPregunta extends ApiServlet {
 
 	private static final long serialVersionUID = -3911609276462246792L;
 
+	public CrearPregunta(){
+		super(true);
+	}
+
 	@Override
 	protected String postResponse(Request request, Connection db) throws SQLException, ApiException{
 		String pregunta = request.getString("pregunta");

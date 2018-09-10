@@ -17,6 +17,16 @@ import javax.json.Json;
 public abstract class ApiServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = -9089534560668756167L;
+	private boolean sesionIniciada = false;
+	private boolean requiereInicioSesion = false;
+
+	public ApiServlet(){
+		this.requiereInicioSesion = false;
+	}
+
+	public ApiServlet(boolean requiereInicioSesion){
+		this.requiereInicioSesion = requiereInicioSesion;
+	}
 
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,7 +35,7 @@ public abstract class ApiServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		try{
 			db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
-			iniciarSesion(request, db);
+			sesionIniciada = iniciarSesion(request, db);
             response.getWriter().append(postResponse(new Request(request), db));
         } catch (SQLException e){
             response.setStatus(500);
@@ -40,13 +50,21 @@ public abstract class ApiServlet extends HttpServlet {
 		}
     }
     
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * @return true si se ha enviado un token de sesión valido
+	 */
+	protected boolean isSesionIniciada() {
+		return sesionIniciada;
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Connection db = null;
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setCharacterEncoding("UTF-8");
 		try{
 			db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
-			iniciarSesion(request, db);
+			sesionIniciada = iniciarSesion(request, db);
 			response.getWriter().append(getResponse(new Request(request), db));
 		} catch (SQLException e){
 			response.setStatus(500);
@@ -74,6 +92,9 @@ public abstract class ApiServlet extends HttpServlet {
 					}
 				}
 			}
+		}
+		if(requiereInicioSesion){
+			throw new ApiException(401, "Debes iniciar sesión");
 		}
 		return false;
 	}

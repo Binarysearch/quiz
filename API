@@ -43,4 +43,34 @@ NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
 NOTA: Los parametros respuesta3 y respuesta4 son opcionales. 
     Si respuesta3 no esta establecido se ignorará respuesta4.
 NOTA: El parametro correcta debe ser menor o igual que el numero de respuestas.
+
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para obtener todas las preguntas del usuario
+POST
+https://binarysearch.es/quiz/get_preguntas
+
+RESPUESTA: 
+[
+    {
+        "id": 3,
+        "pregunta": "p",
+        "respuesta1": "r1",
+        "respuesta2": "r2",
+        "respuesta3": "r3",
+        "respuesta4": "r4",
+        "correcta": 2
+    },
+    {
+        "id": 4,
+        "pregunta": "p",
+        "respuesta1": "r1",
+        "respuesta2": "r2",
+        "respuesta3": "r3",
+        "correcta": 2
+    }
+    .....
+]
+
 ------------------------------------------------------------------------------------------------
