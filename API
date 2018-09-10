@@ -113,3 +113,15 @@ RESPUESTA:
 ]
 NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
 ------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para cambiar el tema actual del usuario
+POST
+https://binarysearch.es/quiz/set_tema?id=21
+
+RESPUESTA: 
+{
+    "id": 21
+}
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+------------------------------------------------------------------------------------------------
