@@ -93,3 +93,23 @@ RESPUESTA:
 NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
 NOTA: Se cambiara el tema actual del usuario. Las preguntas creadas se crean siempre en el tema actual.
 ------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para obtener todos los temas del usuario
+POST
+https://binarysearch.es/quiz/get_temas
+
+RESPUESTA: 
+[
+    {
+        "id": 19,
+        "nombre": "test tema"
+    },
+    {
+        "id": 20,
+        "nombre": "test tema 2"
+    }
+    .....
+]
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+------------------------------------------------------------------------------------------------

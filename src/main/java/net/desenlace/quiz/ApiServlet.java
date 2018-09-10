@@ -80,6 +80,7 @@ public abstract class ApiServlet extends HttpServlet {
 	}
 
     private void iniciarSesion(HttpServletRequest request, Connection db) throws SQLException {
+		sesionIniciada = false;
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null){
 			for(Cookie c : cookies){
