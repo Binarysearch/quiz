@@ -31,6 +31,7 @@ https://binarysearch.es/quiz/crear_pregunta?pregunta=p&respuesta1=r1&respuesta2=
 RESPUESTA: 
 {
     "id": 3,
+    "tema": 20,
     "pregunta": "p",
     "respuesta1": "r1",
     "respuesta2": "r2",
@@ -43,6 +44,8 @@ NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
 NOTA: Los parametros respuesta3 y respuesta4 son opcionales. 
     Si respuesta3 no esta establecido se ignorará respuesta4.
 NOTA: El parametro correcta debe ser menor o igual que el numero de respuestas.
+NOTA: Las preguntas se crean en el tema que tiene seleccionado el usuario.
+    Si no hay tema seleccionado se crearán en el tema NULL, 0 o por defecto.
 
 ------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------
@@ -55,6 +58,7 @@ RESPUESTA:
 [
     {
         "id": 3,
+        "tema": 0,
         "pregunta": "p",
         "respuesta1": "r1",
         "respuesta2": "r2",
@@ -64,6 +68,7 @@ RESPUESTA:
     },
     {
         "id": 4,
+        "tema": 20,
         "pregunta": "p",
         "respuesta1": "r1",
         "respuesta2": "r2",
@@ -73,4 +78,18 @@ RESPUESTA:
     .....
 ]
 
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+Ejemplo de creacion de un tema
+POST
+https://binarysearch.es/quiz/crear_tema?nombre=test tema
+
+RESPUESTA: 
+{
+    "id": 20,
+    "nombre": "test tema"
+}
+
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+NOTA: Se cambiara el tema actual del usuario. Las preguntas creadas se crean siempre en el tema actual.
 ------------------------------------------------------------------------------------------------

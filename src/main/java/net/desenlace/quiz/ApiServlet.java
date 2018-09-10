@@ -35,7 +35,7 @@ public abstract class ApiServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		try{
 			db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
-			sesionIniciada = iniciarSesion(request, db);
+			iniciarSesion(request, db);
             response.getWriter().append(postResponse(new Request(request), db));
         } catch (SQLException e){
             response.setStatus(500);
@@ -64,7 +64,7 @@ public abstract class ApiServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		try{
 			db = DriverManager.getConnection(DbData.DB_URL, DbData.DB_USER, DbData.DB_PASS);
-			sesionIniciada = iniciarSesion(request, db);
+			iniciarSesion(request, db);
 			response.getWriter().append(getResponse(new Request(request), db));
 		} catch (SQLException e){
 			response.setStatus(500);
@@ -79,7 +79,7 @@ public abstract class ApiServlet extends HttpServlet {
 		}
 	}
 
-    private boolean iniciarSesion(HttpServletRequest request, Connection db) throws SQLException {
+    private void iniciarSesion(HttpServletRequest request, Connection db) throws SQLException {
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null){
 			for(Cookie c : cookies){
@@ -88,15 +88,14 @@ public abstract class ApiServlet extends HttpServlet {
 					st.setString(1, c.getValue());
 					ResultSet r = st.executeQuery();
 					if(r.next()){
-						return r.getBoolean("iniciar_sesion");
+						sesionIniciada = r.getBoolean("iniciar_sesion");
 					}
 				}
 			}
 		}
-		if(requiereInicioSesion){
+		if(requiereInicioSesion && !sesionIniciada){
 			throw new ApiException(401, "Debes iniciar sesión");
 		}
-		return false;
 	}
 
 	protected String postResponse(Request request, Connection connection) throws SQLException {

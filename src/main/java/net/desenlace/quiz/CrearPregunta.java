@@ -39,7 +39,7 @@ public class CrearPregunta extends ApiServlet {
 			throw new ApiException(400, "El parametro 'correcta' no es valido. De be tener un valor entre 1 y "+max+"");
 		}
 
-		PreparedStatement st = db.prepareStatement("insert into quiz.preguntas(pregunta,respuesta1,respuesta2,respuesta3,respuesta4,correcta) values(?,?,?,?,?,?) returning id;");
+		PreparedStatement st = db.prepareStatement("insert into quiz.preguntas(pregunta,respuesta1,respuesta2,respuesta3,respuesta4,correcta) values(?,?,?,?,?,?) returning id,tema;");
 		int i=1;
 		st.setString(i++, pregunta);
 		st.setString(i++, respuesta1);
@@ -59,8 +59,10 @@ public class CrearPregunta extends ApiServlet {
 		ResultSet r = st.executeQuery();
 		if(r.next()){
 			int id = r.getInt("id");
+			int tema = r.getInt("tema");
 			JsonObjectBuilder ob = Json.createObjectBuilder()
 				.add("id", id)
+				.add("tema", tema)
 				.add("pregunta", pregunta)
 				.add("respuesta1", respuesta1)
 				.add("respuesta2", respuesta2);
