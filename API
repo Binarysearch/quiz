@@ -125,3 +125,31 @@ RESPUESTA:
 }
 NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
 ------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para borrar un tema
+POST
+https://binarysearch.es/quiz/borrar_tema?id=21
+
+RESPUESTA: 
+{
+    "result": "ok"
+}
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+NOTA: Se elimnarán todas las preguntas de ese tema
+NOTA: Solo se eliminara el tema si ha sido creado por el usuario
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para borrar una pregunta
+POST
+https://binarysearch.es/quiz/borrar_pregunta?id=12
+
+RESPUESTA: 
+{
+    "result": "ok"
+}
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+NOTA: Solo se eliminara la pregunta si ha sido creada por el usuario
+------------------------------------------------------------------------------------------------
+
