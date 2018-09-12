@@ -7,7 +7,7 @@ import RegisterForm from './Components/RegisterForm';
 const App = () => (
 	<BrowserRouter>
 		<div>
-			<Navbar auth={true} />
+			<Navbar auth={false} />
 			<Route exact path="/" component={Home} />
 			<Route path="/register" component={RegisterForm} />
 		</div>

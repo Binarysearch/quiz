@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import { updateField } from '../Utils/UpdateField';
 import FormField from './FormField';
 import Button from './Button';
+import { Redirect } from 'react-router-dom';
 
 const StyledForm = styled.form`
 	background-color: white;
@@ -38,13 +40,31 @@ export class RegisterForm extends Component {
 
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			redirect: false
 		};
+		this.handleRegister = this.handleRegister.bind(this);
 	}
 
 	updateField = updateField.bind(this);
+	handleRegister() {
+		axios
+			.post(
+				`https://binarysearch.es/quiz/register?email=${
+					this.state.email
+				}&password=${this.state.password}`
+			)
+			.then((response) => {
+				if (response.data.id !== undefined) {
+					this.setState({ redirect: true });
+				}
+			});
+	}
 
 	render() {
+		if (this.state.redirect) {
+			return <Redirect to="/login" />;
+		}
 		return (
 			<StyledForm>
 				<FormTitle>Create Accout</FormTitle>
@@ -69,7 +89,7 @@ export class RegisterForm extends Component {
 						buttonText="Register"
 						onClick={(event) => {
 							event.preventDefault();
-							console.log(this.state);
+							this.handleRegister();
 						}}
 					/>
 				</CenteredDiv>
