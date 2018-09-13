@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/get_preguntas")
@@ -34,11 +35,16 @@ public class GetPreguntas extends ApiServlet {
 
 			if(r.getString("respuesta3") != null){
 				ob.add("respuesta3", r.getString("respuesta3"));
-				if(r.getString("respuesta4") != null){
-					ob.add("respuesta4", r.getString("respuesta4"));
-				}
+			}else{
+				ob.add("respuesta3", JsonValue.NULL);
 			}
-				
+			
+			if(r.getString("respuesta4") != null){
+				ob.add("respuesta4", r.getString("respuesta4"));
+			}else{
+				ob.add("respuesta4", JsonValue.NULL);
+			}
+
 			ob.add("correcta", r.getInt("correcta"));
 			ab.add(ob);
 		}

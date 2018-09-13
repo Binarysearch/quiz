@@ -94,6 +94,17 @@ public abstract class ApiServlet extends HttpServlet {
 				}
 			}
 		}
+		if(!sesionIniciada){
+			String token = request.getParameter("token");
+			if(token != null){
+				PreparedStatement st = db.prepareStatement("select quiz.iniciar_sesion(?);");
+				st.setString(1, token);
+				ResultSet r = st.executeQuery();
+				if(r.next()){
+					sesionIniciada = r.getBoolean("iniciar_sesion");
+				}
+			}
+		}
 		if(requiereInicioSesion && !sesionIniciada){
 			throw new ApiException(401, "Debes iniciar sesión");
 		}
