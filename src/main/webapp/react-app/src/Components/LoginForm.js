@@ -52,8 +52,7 @@ export class LoginForm extends Component {
 			.post(
 				`https://binarysearch.es/quiz/login?email=${
 					this.state.email
-				}&password=${this.state.password}`,
-				{ withCredentials: true }
+				}&password=${this.state.password}`
 			)
 			.then((response) => {
 				if (response.data.token !== undefined) {
