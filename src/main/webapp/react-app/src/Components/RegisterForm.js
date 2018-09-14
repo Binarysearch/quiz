@@ -32,6 +32,7 @@ const FormTitle = styled.h1`
 `;
 const CenteredDiv = styled.div`
 	text-align: center;
+	margin: 1rem;
 `;
 
 export class RegisterForm extends Component {

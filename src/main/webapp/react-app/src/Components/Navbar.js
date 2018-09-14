@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const NavWrapper = styled.div`
-	width: 100vw;
 	box-sizing: border-box;
 	background-image: linear-gradient(135deg, #97abff 10%, #123597 100%);
 	color: #fefefe;
