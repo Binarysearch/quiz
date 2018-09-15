@@ -22,14 +22,21 @@ public class GetPreguntas extends ApiServlet {
 
 	@Override
 	protected String postResponse(Request request, Connection db) throws SQLException, ApiException{
-		PreparedStatement st = db.prepareStatement("select id,tema,pregunta,respuesta1,respuesta2,respuesta3,respuesta4,correcta from quiz.preguntas where usuario=quiz.usr() order by id;");
+		PreparedStatement st = db.prepareStatement("select p.id,tema,t.nombre as nombre_tema,pregunta,respuesta1,respuesta2,respuesta3,respuesta4,correcta from quiz.preguntas p left join quiz.temas t on t.id=p.tema where p.usuario=quiz.usr() order by id;");
 		ResultSet r = st.executeQuery();
 		JsonArrayBuilder ab = Json.createArrayBuilder();
 		while(r.next()){
 			JsonObjectBuilder ob = Json.createObjectBuilder()
 				.add("id", r.getInt("id"))
-				.add("tema", r.getInt("tema"))
-				.add("pregunta", r.getString("pregunta"))
+				.add("tema", r.getInt("tema"));
+
+			if(r.getString("nombre_tema") != null){
+				ob.add("nombre_tema", r.getString("nombre_tema"));
+			}else{
+				ob.add("nombre_tema", JsonValue.NULL);
+			}
+
+			ob.add("pregunta", r.getString("pregunta"))
 				.add("respuesta1", r.getString("respuesta1"))
 				.add("respuesta2", r.getString("respuesta2"));
 
