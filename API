@@ -152,4 +152,17 @@ RESPUESTA:
 NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
 NOTA: Solo se eliminara la pregunta si ha sido creada por el usuario
 ------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para obtener el tema actual del usuario
+POST
+https://binarysearch.es/quiz/get_tema_actual
+
+RESPUESTA: 
+{
+    "id": 31,
+    "nombre": "Historia de España"
+}
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+------------------------------------------------------------------------------------------------
 
