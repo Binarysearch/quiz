@@ -34,20 +34,28 @@ const SingleAnswer = styled.div`
 		props.correct ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.8)'};
 `;
 
+const QuestionTheme = styled.h2`
+	text-align: center;
+	font-size: 0.8rem;
+	color: rgba(0, 0, 0, 0.7);
+	text-transform: uppercase;
+`;
+
 class SingleQuestion extends Component {
 	render() {
-		console.log(this.props);
 		const {
 			pregunta,
 			respuesta1,
 			respuesta2,
 			respuesta3,
 			respuesta4,
-			correcta
+			correcta,
+			nombre_tema
 		} = this.props.question;
 		return (
 			<QuestionBox>
 				<QuestionTitle>{pregunta}</QuestionTitle>
+				<QuestionTheme>{nombre_tema}</QuestionTheme>
 				<QuestionAnswers>
 					<SingleAnswer correct={correcta === 1 ? true : false}>
 						{respuesta1 ? respuesta1 : ' '}

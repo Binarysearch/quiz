@@ -1,0 +1,14 @@
+@font-face {
+	font-family: 'GoogleSans';
+	src: url(./fonts/GoogleSans-Regular.ttf);
+}
+
+body {
+	margin: 0;
+	font-family: 'GoogleSans';
+	padding: 0;
+	font-size: 12pt;
+	min-height: 100vh;
+	background-color: #1d1d1d;
+	padding-bottom: 50px;
+}

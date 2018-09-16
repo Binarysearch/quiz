@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const StyledButton = styled.button`
 	color: #efefef;
 	font-size: 1.1rem;
+	font-family: inherit;
 	font-weight: 600;
-	margin: 1rem;
 	padding: 0.5rem 1.5rem;
 	background: #123597;
 	cursor: pointer;

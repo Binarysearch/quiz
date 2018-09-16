@@ -37,7 +37,14 @@ class App extends Component {
 					<Route
 						path="/questions"
 						render={(props) => {
-							return this.state.auth ? <Questions /> : <Redirect to="/login" />;
+							return this.state.auth ? (
+								<Questions
+									token={this.state.token}
+									theme={props.match.params.theme}
+								/>
+							) : (
+								<Redirect to="/login" />
+							);
 						}}
 					/>
 

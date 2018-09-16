@@ -86,7 +86,13 @@ export class Navbar extends Component {
 					<MenuItem key="2" to="/practice">
 						Practice
 					</MenuItem>,
-					<MenuItem key="3" to="/logout">
+					<MenuItem
+						onClick={(event) => {
+							document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+							window.location.reload();
+						}}
+						key="3"
+						to="/logout">
 						Logout
 					</MenuItem>
 				];
