@@ -34,7 +34,7 @@ const CenteredDiv = styled.div`
 	text-align: center;
 `;
 
-export class RegisterForm extends Component {
+export class LoginForm extends Component {
 	constructor(props) {
 		super(props);
 
@@ -43,19 +43,20 @@ export class RegisterForm extends Component {
 			password: '',
 			redirect: false
 		};
-		this.handleRegister = this.handleRegister.bind(this);
+		this.handleLogin = this.handleLogin.bind(this);
 	}
 
 	updateField = updateField.bind(this);
-	handleRegister() {
+	handleLogin() {
 		axios
 			.post(
-				`https://binarysearch.es/quiz/register?email=${
+				`https://binarysearch.es/quiz/login?email=${
 					this.state.email
 				}&password=${this.state.password}`
 			)
 			.then((response) => {
-				if (response.data.id !== undefined) {
+				if (response.data.token !== undefined) {
+					this.props.updateSession(response.data.token);
 					this.setState({ redirect: true });
 				}
 			});
@@ -63,11 +64,11 @@ export class RegisterForm extends Component {
 
 	render() {
 		if (this.state.redirect) {
-			return <Redirect to="/login" />;
+			return <Redirect to="/" />;
 		}
 		return (
 			<StyledForm>
-				<FormTitle>Create Accout</FormTitle>
+				<FormTitle>Login into Accout</FormTitle>
 				<FormField
 					value={this.state.email}
 					type="email"
@@ -86,11 +87,11 @@ export class RegisterForm extends Component {
 				/>
 				<CenteredDiv>
 					<Button
-						buttonText="Register"
+						buttonText="Login"
 						onClick={(event) => {
 							event.preventDefault();
 							if (this.state.email !== '' && this.state.password !== '') {
-								this.handleRegister();
+								this.handleLogin();
 							}
 						}}
 					/>
@@ -100,4 +101,4 @@ export class RegisterForm extends Component {
 	}
 }
 
-export default RegisterForm;
+export default LoginForm;

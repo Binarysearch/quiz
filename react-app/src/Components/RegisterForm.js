@@ -32,9 +32,10 @@ const FormTitle = styled.h1`
 `;
 const CenteredDiv = styled.div`
 	text-align: center;
+	margin: 1rem;
 `;
 
-export class LoginForm extends Component {
+export class RegisterForm extends Component {
 	constructor(props) {
 		super(props);
 
@@ -43,21 +44,19 @@ export class LoginForm extends Component {
 			password: '',
 			redirect: false
 		};
-		this.handleLogin = this.handleLogin.bind(this);
+		this.handleRegister = this.handleRegister.bind(this);
 	}
 
 	updateField = updateField.bind(this);
-	handleLogin() {
+	handleRegister() {
 		axios
 			.post(
-				`https://binarysearch.es/quiz/login?email=${
+				`https://binarysearch.es/quiz/register?email=${
 					this.state.email
-				}&password=${this.state.password}`,
-				{ withCredentials: true }
+				}&password=${this.state.password}`
 			)
 			.then((response) => {
-				if (response.data.token !== undefined) {
-					this.props.updateSession(response.data.token);
+				if (response.data.id !== undefined) {
 					this.setState({ redirect: true });
 				}
 			});
@@ -65,11 +64,11 @@ export class LoginForm extends Component {
 
 	render() {
 		if (this.state.redirect) {
-			return <Redirect to="/" />;
+			return <Redirect to="/login" />;
 		}
 		return (
 			<StyledForm>
-				<FormTitle>Login into Accout</FormTitle>
+				<FormTitle>Create Accout</FormTitle>
 				<FormField
 					value={this.state.email}
 					type="email"
@@ -88,11 +87,11 @@ export class LoginForm extends Component {
 				/>
 				<CenteredDiv>
 					<Button
-						buttonText="Login"
+						buttonText="Register"
 						onClick={(event) => {
 							event.preventDefault();
 							if (this.state.email !== '' && this.state.password !== '') {
-								this.handleLogin();
+								this.handleRegister();
 							}
 						}}
 					/>
@@ -102,4 +101,4 @@ export class LoginForm extends Component {
 	}
 }
 
-export default LoginForm;
+export default RegisterForm;

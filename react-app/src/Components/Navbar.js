@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const NavWrapper = styled.div`
-	width: 100vw;
 	box-sizing: border-box;
 	background-image: linear-gradient(135deg, #97abff 10%, #123597 100%);
 	color: #fefefe;
@@ -87,7 +86,13 @@ export class Navbar extends Component {
 					<MenuItem key="2" to="/practice">
 						Practice
 					</MenuItem>,
-					<MenuItem key="3" to="/logout">
+					<MenuItem
+						onClick={(event) => {
+							document.cookie = 'token=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+							window.location.reload();
+						}}
+						key="3"
+						to="/logout">
 						Logout
 					</MenuItem>
 				];

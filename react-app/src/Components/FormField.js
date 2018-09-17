@@ -25,7 +25,7 @@ export class FormField extends Component {
 	render() {
 		const { labelText, placeholder, type, name, onChangeText } = this.props;
 		return (
-			<Field>
+			<Field onClick={this.props.onClick}>
 				<FieldLabel>{labelText}</FieldLabel>
 				<FieldInput
 					type={type}
