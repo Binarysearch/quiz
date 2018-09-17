@@ -1,0 +1,7 @@
+target/
+src/main/java/net/desenlace/quiz/DbData.java
+/node-modules
+.project
+.vscode/
+.settings/
+.classpath

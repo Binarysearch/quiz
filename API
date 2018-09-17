@@ -1,0 +1,155 @@
+Ejemplo de registro de un usuario
+POST
+https://binarysearch.es/quiz/register?email=antonio.ruiz@desenlace.net&password=12345
+
+RESPUESTA: 
+{
+    "id":4
+}
+
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+Ejemplo de login
+POST
+https://binarysearch.es/quiz/login?email=antonio.ruiz@desenlace.net&password=123456
+
+RESPUESTA: 
+{
+    "usuario":1,
+    "token":"rwjYicdy9Ger5YGqOnqeijqUyNda3dbuaLTJx8I7OwyTWFJu3A",
+    "email":"antonio.ruiz@desenlace.net"
+}
+
+------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+Ejemplo de creacion de una pregunta
+POST
+https://binarysearch.es/quiz/crear_pregunta?pregunta=p&respuesta1=r1&respuesta2=r2&respuesta3=r3&respuesta4=r4&correcta=2
+
+RESPUESTA: 
+{
+    "id": 3,
+    "tema": 20,
+    "pregunta": "p",
+    "respuesta1": "r1",
+    "respuesta2": "r2",
+    "respuesta3": "r3",
+    "respuesta4": "r4",
+    "correcta": 2
+}
+
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+NOTA: Los parametros respuesta3 y respuesta4 son opcionales. 
+    Si respuesta3 no esta establecido se ignorará respuesta4.
+NOTA: El parametro correcta debe ser menor o igual que el numero de respuestas.
+NOTA: Las preguntas se crean en el tema que tiene seleccionado el usuario.
+    Si no hay tema seleccionado se crearán en el tema NULL, 0 o por defecto.
+
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para obtener todas las preguntas del usuario
+POST
+https://binarysearch.es/quiz/get_preguntas
+
+RESPUESTA: 
+[
+    {
+        "id": 3,
+        "tema": 0,
+        "pregunta": "p",
+        "respuesta1": "r1",
+        "respuesta2": "r2",
+        "respuesta3": "r3",
+        "respuesta4": "r4",
+        "correcta": 2
+    },
+    {
+        "id": 4,
+        "tema": 20,
+        "pregunta": "p",
+        "respuesta1": "r1",
+        "respuesta2": "r2",
+        "respuesta3": "r3",
+        "correcta": 2
+    }
+    .....
+]
+
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+Ejemplo de creacion de un tema
+POST
+https://binarysearch.es/quiz/crear_tema?nombre=test tema
+
+RESPUESTA: 
+{
+    "id": 20,
+    "nombre": "test tema"
+}
+
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+NOTA: Se cambiara el tema actual del usuario. Las preguntas creadas se crean siempre en el tema actual.
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para obtener todos los temas del usuario
+POST
+https://binarysearch.es/quiz/get_temas
+
+RESPUESTA: 
+[
+    {
+        "id": 19,
+        "nombre": "test tema"
+    },
+    {
+        "id": 20,
+        "nombre": "test tema 2"
+    }
+    .....
+]
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para cambiar el tema actual del usuario
+POST
+https://binarysearch.es/quiz/set_tema?id=21
+
+RESPUESTA: 
+{
+    "id": 21
+}
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para borrar un tema
+POST
+https://binarysearch.es/quiz/borrar_tema?id=21
+
+RESPUESTA: 
+{
+    "result": "ok"
+}
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+NOTA: Se elimnarán todas las preguntas de ese tema
+NOTA: Solo se eliminara el tema si ha sido creado por el usuario
+------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+
+Ejemplo de peticion para borrar una pregunta
+POST
+https://binarysearch.es/quiz/borrar_pregunta?id=12
+
+RESPUESTA: 
+{
+    "result": "ok"
+}
+NOTA: Debes enviar el token de sesion en una cookie de nombre 'token'
+NOTA: Solo se eliminara la pregunta si ha sido creada por el usuario
+------------------------------------------------------------------------------------------------
+
